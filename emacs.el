@@ -2,6 +2,11 @@
 (standard-display-ascii ?\t ">-")
 (setq make-backup-files nil)
 
+; evil
+(add-to-list 'load-path "~/.emacs.d/evil")
+(require 'evil)
+(evil-mode 1)
+
 ; org-mode
 (require 'org-install)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
