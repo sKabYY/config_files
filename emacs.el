@@ -1,6 +1,14 @@
+; load-path
+(add-to-list 'load-path "~/config_files")
+
 ;(setq default-tab-width 2)
-(standard-display-ascii ?\t "  ")
+(standard-display-ascii ?\t "->")
 (setq make-backup-files nil)
+(setq mouse-wheel-scroll-amout '(1 ((shift) . 1)))
+(setq mouse-wheel-progressive-speed nil)
+(setq mouse-wheel-follow-mouse 't)
+(setq scroll-step 1)
+(xterm-mouse-mode 't)
 
 ; evil
 (add-to-list 'load-path "~/.emacs.d/evil")
@@ -13,9 +21,6 @@
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
-
-; load-path
-(add-to-list 'load-path "~/config_files")
 
 ; paredit
 (autoload 'paredit-mode "paredit"
