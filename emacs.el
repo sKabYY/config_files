@@ -11,6 +11,7 @@
 
 (require 'cmuscheme)
 (setq scheme-program-name "racket")         ;; 如果用 Petite 就改成 "petite"
+(add-to-list 'auto-mode-alist '("\\.rkt$" . scheme-mode))
 
 
 ;; bypass the interactive question and start the default interpreter

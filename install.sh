@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
-ln -s ~/config_files/emacs ~/.emacs
+rm -f ~/.emacs
+ln -s ~/config_files/emacs.el ~/.emacs
 echo 'Done!'
