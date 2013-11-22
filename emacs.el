@@ -1,5 +1,5 @@
 ;(setq default-tab-width 2)
-(standard-display-ascii ?\t ">-")
+(standard-display-ascii ?\t "  ")
 (setq make-backup-files nil)
 
 ; evil
@@ -14,13 +14,17 @@
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
 
-; paredit
+; load-path
 (add-to-list 'load-path "~/config_files")
 
+; paredit
 (autoload 'paredit-mode "paredit"
   "Minor mode for pseudo-structurally editing Lisp code."
   t)
 
+; scheme
+(require 'parenface)
+(set-face-foreground 'paren-face "DimGray")
 
 (require 'cmuscheme)
 (setq scheme-program-name "racket")         ;; 如果用 Petite 就改成 "petite"
