@@ -12,6 +12,9 @@
       show-paren-style 'parenthesis)
 (show-paren-mode t)
 
+; close the menu bar
+(menu-bar-mode -99)
+
 ; show line numbers
 (global-linum-mode t)
 
