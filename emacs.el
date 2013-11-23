@@ -1,28 +1,37 @@
 ; load-path
 (add-to-list 'load-path "~/config_files")
 
-(standard-display-ascii ?\t "------->")
-
 (setq make-backup-files nil)
 (setq mouse-wheel-scroll-amout '(1 ((shift) . 1)))
 (setq mouse-wheel-progressive-speed nil)
-(setq mouse-wheel-follow-mouse 't)
+(setq mouse-wheel-follow-mouse t)
 (setq scroll-step 1)
-(xterm-mouse-mode 't)
+(xterm-mouse-mode t)
 
 (setq show-paren-delay 0
       show-paren-style 'parenthesis)
-(show-paren-mode 1)
+(show-paren-mode t)
 
-(setq-default show-trailing-whitespace 't)
+; show line numbers
+(global-linum-mode t)
+
+; whitespace
+(setq-default show-trailing-whitespace t)
+
+; tab
+(standard-display-ascii ?\t "------->")
 (setq-default indent-tabs-mode nil)
+
+; return key
 (add-hook 'prog-mode-hook '(lambda ()
+  (local-set-key (kbd "RET") 'newline-and-indent)))
+(add-hook 'sgml-mode-hook '(lambda ()
   (local-set-key (kbd "RET") 'newline-and-indent)))
 
 ; evil
 (add-to-list 'load-path "~/.emacs.d/evil")
 (require 'evil)
-(evil-mode 1)
+(evil-mode t)
 
 ; org-mode
 (require 'org-install)
@@ -96,7 +105,7 @@
 ;
 ;(add-hook 'scheme-mode-hook
 ;  (lambda ()
-;    (paredit-mode 1)
+;    (paredit-mode t)
 ;    (define-key scheme-mode-map (kbd "<f5>") 'scheme-send-last-sexp-split-window)
 ;    (define-key scheme-mode-map (kbd "<f6>") 'scheme-send-definition-split-window)))
 (custom-set-variables
