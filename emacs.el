@@ -26,17 +26,31 @@
 (setq-default indent-tabs-mode nil)
 
 ; return key, auto indent
+(defun prog-newline ()
+  (interactive)
+  (comment-indent-new-line))
 (add-hook 'prog-mode-hook '(lambda ()
-  (local-set-key (kbd "RET") 'newline-and-indent)))
+  (local-set-key (kbd "RET") 'prog-newline)))
 (add-hook 'sgml-mode-hook '(lambda ()
-  (local-set-key (kbd "RET") 'newline-and-indent)))
+  (local-set-key (kbd "RET") 'prog-newline)))
 (add-hook 'erlang-mode-hook '(lambda ()
-  (local-set-key (kbd "RET") 'newline-and-indent)))
+  (local-set-key (kbd "RET") 'prog-newline)))
+(defun end-of-line-and-prog-newline ()
+  (interactive)
+  (end-of-line)
+  (prog-newline))
+(add-hook 'erlang-mode-hook '(lambda ()
+  (local-set-key (kbd "C-j") 'end-of-line-and-prog-newline)))
+(add-hook 'prog-mode-hook '(lambda ()
+  (local-set-key (kbd "C-j") 'end-of-line-and-prog-newline)))
 
 ; evil
 (add-to-list 'load-path "~/.emacs.d/evil")
 (require 'evil)
 (evil-mode t)
+(define-key evil-normal-state-map (kbd "C-e") 'end-of-line)
+(define-key evil-motion-state-map (kbd "C-e") 'end-of-line)
+(define-key evil-insert-state-map (kbd "C-e") 'end-of-line)
 
 ; org-mode
 (require 'org-install)
@@ -59,6 +73,11 @@
 ; color
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'erlang-mode-hook 'rainbow-delimiters-mode)
+
+; erlang
+(add-hook 'erlang-mode-hook (lambda ()
+  (setq erlang-electric-commands '(erlang-electric-semicolon))))
 
 ; scheme
 (add-to-list 'auto-mode-alist '("\\.rkt$" . scheme-mode))
