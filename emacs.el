@@ -25,10 +25,12 @@
 (standard-display-ascii ?\t "------->")
 (setq-default indent-tabs-mode nil)
 
-; return key
+; return key, auto indent
 (add-hook 'prog-mode-hook '(lambda ()
   (local-set-key (kbd "RET") 'newline-and-indent)))
 (add-hook 'sgml-mode-hook '(lambda ()
+  (local-set-key (kbd "RET") 'newline-and-indent)))
+(add-hook 'erlang-mode-hook '(lambda ()
   (local-set-key (kbd "RET") 'newline-and-indent)))
 
 ; evil
