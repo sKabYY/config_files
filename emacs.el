@@ -75,6 +75,13 @@
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'erlang-mode-hook 'rainbow-delimiters-mode)
 
+; markdown
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
 ; erlang
 (add-hook 'erlang-mode-hook (lambda ()
   (setq erlang-electric-commands '(erlang-electric-semicolon))))
