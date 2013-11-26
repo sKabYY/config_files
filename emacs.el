@@ -92,7 +92,7 @@
 ; erlang
 (add-hook 'erlang-mode-hook (lambda ()
   (setq erlang-electric-commands '(erlang-electric-semicolon))))
-(add-to-list 'auto-mode-alist '("\\.erlprof\\'" . erlang-mode))
+(add-to-list 'auto-mode-alist '("\\.erl" . erlang-mode))
 
 ; scheme
 (add-to-list 'auto-mode-alist '("\\.rkt\\'" . scheme-mode))
