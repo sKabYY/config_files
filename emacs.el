@@ -92,9 +92,10 @@
 ; erlang
 (add-hook 'erlang-mode-hook (lambda ()
   (setq erlang-electric-commands '(erlang-electric-semicolon))))
+(add-to-list 'auto-mode-alist '("\\.erlprof\\'" . erlang-mode))
 
 ; scheme
-(add-to-list 'auto-mode-alist '("\\.rkt$" . scheme-mode))
+(add-to-list 'auto-mode-alist '("\\.rkt\\'" . scheme-mode))
 
 ;(require 'cmuscheme)
 ;(setq scheme-program-name "racket")         ;; 如果用 Petite 就改成 "petite"
