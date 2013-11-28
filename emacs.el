@@ -8,6 +8,7 @@
 (setq scroll-step 1)
 (xterm-mouse-mode t)
 (setq column-number-mode t)
+(setq-default case-fold-search nil)
 
 (setq show-paren-delay 0
       show-paren-style 'parenthesis)
