@@ -1,4 +1,6 @@
 config_files
 ============
 
-./install.sh
+* install emacs24
+* install erlang-mode
+* ./install.sh

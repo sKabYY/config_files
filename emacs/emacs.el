@@ -1,5 +1,5 @@
 ; load-path
-(add-to-list 'load-path "~/config_files")
+(add-to-list 'load-path "~/config_files/emacs")
 
 (setq make-backup-files nil)
 (setq mouse-wheel-scroll-amout '(1 ((shift) . 1)))

@@ -2,6 +2,14 @@
 
 set -x  # echo on
 
+
+# Bash #####################################################
+
+rm -f ~/.bashrc
+ln -s ~/config_files/bash/bashrc.sh ~/.bashrc
+
+# Emacs ####################################################
+
 if [ ! -d ~/.emacs.d ]; then
     mkdir ~/.emacs.d
 fi
@@ -12,6 +20,8 @@ fi
 cd ~/.emacs.d/evil && make
 
 rm -f ~/.emacs
-ln -s ~/config_files/emacs.el ~/.emacs
+ln -s ~/config_files/emacs/emacs.el ~/.emacs
+
+############################################################
 
 echo 'Done!'
