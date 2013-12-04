@@ -52,6 +52,43 @@
 (add-hook 'css-mode-hook '(lambda ()
   (local-set-key (kbd "C-j") 'end-of-line-and-prog-newline)))
 
+; flymake
+(defvar my-flymake-minor-mode-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map "\M-e" 'flymake-show-error-message)
+    (define-key map "\M-p" 'flymake-goto-prev-error)
+    (define-key map "\M-n" 'flymake-goto-next-error)
+    map)
+  "Keymap for my flymake minor mode.")
+(defun my-flymake-err-at (pos)
+  (let ((overlays (overlays-at pos)))
+    (remove nil
+            (mapcar (lambda (overlay)
+                      (and (overlay-get overlay 'flymake-overlay)
+                           (overlay-get overlay 'help-echo)))
+                    overlays))))
+(defun my-flymake-err-echo ()
+  (message "%s" (mapconcat 'identity (my-flymake-err-at (point)) "\n")))
+(defun flymake-show-error-message ()
+  (interactive)
+  (my-flymake-err-echo))
+(defadvice flymake-goto-next-error
+  (after display-message activate compile)
+  (my-flymake-err-echo))
+(defadvice flymake-goto-prev-error
+  (after display-message activate compile)
+  (my-flymake-err-echo))
+(define-minor-mode my-flymake-minor-mode
+  "Simple minor mode which adds some key bindings for moving to the next and previous errors.
+
+Key bindings:
+
+\\{my-flymake-minor-mode-map}"
+  nil
+  nil
+  :keymap my-flymake-minor-mode-map)
+(add-hook 'flymake-mode-hook 'my-flymake-minor-mode)
+
 ; evil
 (add-to-list 'load-path "~/.emacs.d/evil")
 (require 'evil)
@@ -92,6 +129,23 @@
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
+; python
+(when (load "flymake" t)
+  (defun flymake-local-file ()
+    (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                       'flymake-create-temp-inplace))
+           (local-file (file-relative-name
+                        temp-file
+                        (file-name-directory buffer-file-name))))
+      local-file))
+  (defun flymake-pychecker-init ()
+    (list "pychecker.sh" (list (flymake-local-file))))
+  (defun add-to-list-flymake (proc-symbol)
+    (add-to-list 'flymake-allowed-file-name-masks
+                 (list "\\.py\\'" proc-symbol)))
+  (add-to-list-flymake 'flymake-pychecker-init))
+(add-hook 'find-file-hook 'flymake-find-file-hook)
+
 ; erlang
 (add-hook 'erlang-mode-hook (lambda ()
   (setq erlang-electric-commands '(erlang-electric-semicolon))))
@@ -100,56 +154,7 @@
 ; scheme
 (add-to-list 'auto-mode-alist '("\\.rkt\\'" . scheme-mode))
 
-;(require 'cmuscheme)
-;(setq scheme-program-name "racket")         ;; 如果用 Petite 就改成 "petite"
-;
-;
-;;; bypass the interactive question and start the default interpreter
-;(defun scheme-proc ()
-;  "Return the current Scheme process, starting one if necessary."
-;  (unless (and scheme-buffer
-;               (get-buffer scheme-buffer)
-;               (comint-check-proc scheme-buffer))
-;    (save-window-excursion
-;      (run-scheme scheme-program-name)))
-;  (or (scheme-get-process)
-;      (error "No current process. See variable `scheme-buffer'")))
-;
-;
-;(defun scheme-split-window ()
-;  (cond
-;   ((= 1 (count-windows))
-;    (delete-other-windows)
-;    (split-window-vertically (floor (* 0.68 (window-height))))
-;    (other-window 1)
-;    (switch-to-buffer "*scheme*")
-;    (other-window 1))
-;   ((not (find "*scheme*"
-;               (mapcar (lambda (w) (buffer-name (window-buffer w)))
-;                       (window-list))
-;               :test 'equal))
-;    (other-window 1)
-;    (switch-to-buffer "*scheme*")
-;    (other-window -1))))
-;
-;
-;(defun scheme-send-last-sexp-split-window ()
-;  (interactive)
-;  (scheme-split-window)
-;  (scheme-send-last-sexp))
-;
-;
-;(defun scheme-send-definition-split-window ()
-;  (interactive)
-;  (scheme-split-window)
-;  (scheme-send-definition))
-;
-;
-;(add-hook 'scheme-mode-hook
-;  (lambda ()
-;    (paredit-mode t)
-;    (define-key scheme-mode-map (kbd "<f5>") 'scheme-send-last-sexp-split-window)
-;    (define-key scheme-mode-map (kbd "<f6>") 'scheme-send-definition-split-window)))
+; others
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -116,7 +116,7 @@ fi
 source ~/config_files/bash/git-prompt.sh
 PS1='${debian_chroot:+($debian_chroot)}\[\033[00;32m\]\u@\h\[\033[00m\]:\[\033[00;34m\]\w\[\033[00;31m\]$(__git_ps1)\[\033[00m\]\$ '
 GOROOT="/usr/local/go"
-PATH="$HOME/bin:$HOME/bin/goagent/local:$PATH:$GOROOT/bin"
+PATH="$HOME/config_files/scripts:$HOME/bin:$HOME/bin/goagent/local:$PATH:$GOROOT/bin"
 
 alias cmake="cmake -DCMAKE_BUILD_TYPE=DEBUG"
 alias cmakerelease="cmake -DCMAKE_BUILD_TYPE=RELEASE"
