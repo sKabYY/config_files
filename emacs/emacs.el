@@ -2,6 +2,11 @@
 (add-to-list 'load-path "~/config_files/emacs")
 
 (setq make-backup-files nil)
+(require 'cl)  ; flet requires Common Lisp package
+(defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
+  "Prevent annoying \"Active processes exist\" query when you quit Emacs."
+  (flet ((process-list ())) ad-do-it))
+
 (setq mouse-wheel-scroll-amout '(1 ((shift) . 1)))
 (setq mouse-wheel-progressive-speed nil)
 (setq mouse-wheel-follow-mouse t)
@@ -72,11 +77,9 @@
 (defun flymake-show-error-message ()
   (interactive)
   (my-flymake-err-echo))
-(defadvice flymake-goto-next-error
-  (after display-message activate compile)
+(defadvice flymake-goto-next-error (after display-message activate compile)
   (my-flymake-err-echo))
-(defadvice flymake-goto-prev-error
-  (after display-message activate compile)
+(defadvice flymake-goto-prev-error (after display-message activate compile)
   (my-flymake-err-echo))
 (define-minor-mode my-flymake-minor-mode
   "Simple minor mode which adds some key bindings for moving to the next and previous errors.
@@ -120,6 +123,7 @@ Key bindings:
 ; color
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'python-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'erlang-mode-hook 'rainbow-delimiters-mode)
 
 ; markdown
@@ -160,7 +164,7 @@ Key bindings:
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(save-place t nil (saveplace)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
