@@ -2,10 +2,11 @@
 (add-to-list 'load-path "~/config_files/emacs")
 
 (setq make-backup-files nil)
-(require 'cl)  ; flet requires Common Lisp package
-(defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
-  "Prevent annoying \"Active processes exist\" query when you quit Emacs."
-  (flet ((process-list ())) ad-do-it))
+(setq abbrev-file-name "~/config_files/emacs/abbrev_defs")
+;(require 'cl)  ; flet requires Common Lisp package
+;(defadvice save-buffers-kill-emacs (around no-query-kill-emacs activate)
+;  "Prevent annoying \"Active processes exist\" query when you quit Emacs."
+;  (flet ((process-list ())) ad-do-it))
 
 (setq mouse-wheel-scroll-amout '(1 ((shift) . 1)))
 (setq mouse-wheel-progressive-speed nil)
@@ -90,6 +91,22 @@ Key bindings:
   nil
   nil
   :keymap my-flymake-minor-mode-map)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(flymake-errline ((((class color)) (:background "blue"))))
+ '(flymake-warnline ((((class color)) (:background "blue"))))
+ '(rainbow-delimiters-depth-1-face ((t (:foreground "magenta"))))
+ '(rainbow-delimiters-depth-2-face ((t (:foreground "magenta"))))
+ '(rainbow-delimiters-depth-3-face ((t (:foreground "magenta"))))
+ '(rainbow-delimiters-depth-4-face ((t (:foreground "magenta"))))
+ '(rainbow-delimiters-depth-5-face ((t (:foreground "magenta"))))
+ '(rainbow-delimiters-depth-6-face ((t (:foreground "magenta"))))
+ '(rainbow-delimiters-depth-7-face ((t (:foreground "magenta"))))
+ '(rainbow-delimiters-depth-8-face ((t (:foreground "magenta"))))
+ '(rainbow-delimiters-depth-9-face ((t (:foreground "magenta")))))
 (add-hook 'flymake-mode-hook 'my-flymake-minor-mode)
 
 ; evil
@@ -164,18 +181,6 @@ Key bindings:
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(safe-local-variable-values (quote ((code . utf-8))))
  '(save-place t nil (saveplace)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(rainbow-delimiters-depth-1-face ((t (:foreground "magenta"))))
- '(rainbow-delimiters-depth-2-face ((t (:foreground "magenta"))))
- '(rainbow-delimiters-depth-3-face ((t (:foreground "magenta"))))
- '(rainbow-delimiters-depth-4-face ((t (:foreground "magenta"))))
- '(rainbow-delimiters-depth-5-face ((t (:foreground "magenta"))))
- '(rainbow-delimiters-depth-6-face ((t (:foreground "magenta"))))
- '(rainbow-delimiters-depth-7-face ((t (:foreground "magenta"))))
- '(rainbow-delimiters-depth-8-face ((t (:foreground "magenta"))))
- '(rainbow-delimiters-depth-9-face ((t (:foreground "magenta")))))
+
