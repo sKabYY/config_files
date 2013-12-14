@@ -121,5 +121,5 @@ PATH="$HOME/config_files/scripts:$HOME/bin:$HOME/bin/goagent/local:$PATH:$GOROOT
 alias cmake="cmake -DCMAKE_BUILD_TYPE=DEBUG"
 alias cmakerelease="cmake -DCMAKE_BUILD_TYPE=RELEASE"
 alias scm="petite --script"
-alias em="emacs24 -nw"
+alias em="emacs -nw"
 alias erlrun="erl -noshell -s init stop -s"
