@@ -428,7 +428,7 @@ Paredit behaves badly if parentheses are unbalanced, so exercise
                  "(foo (bar |baz quux) zot)")
                 ("(a b ((c| d)) e f)"
                  "(a b ((c| d) e) f)"))
-   (("C-}" "C-<left>")
+   (("C-}" "C-<left>" "M-h")
                 paredit-forward-barf-sexp
                 ("(foo (bar |baz quux) zot)"
                  "(foo (bar |baz) quux zot)"))
