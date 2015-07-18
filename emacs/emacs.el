@@ -110,7 +110,7 @@ Key bindings:
 (add-hook 'flymake-mode-hook 'my-flymake-minor-mode)
 
 ; evil
-(add-to-list 'load-path "~/.emacs.d/evil")
+(add-to-list 'load-path "~/config_files/emacs/evil")
 (require 'evil)
 (evil-mode t)
 (define-key evil-normal-state-map (kbd "C-e") 'end-of-line)
@@ -142,6 +142,12 @@ Key bindings:
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'python-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'erlang-mode-hook 'rainbow-delimiters-mode)
+(add-to-list 'load-path "~/config_files/emacs/color-theme")
+(require 'color-theme)
+(eval-after-load "color-theme"
+  '(progn
+     (color-theme-initialize)
+     (color-theme-hober)))
 
 ; markdown
 (autoload 'markdown-mode "markdown-mode"

@@ -1,0 +1,4 @@
+*.elc
+
+*.swp
+.DS_Store
