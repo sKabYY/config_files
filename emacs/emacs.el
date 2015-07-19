@@ -109,6 +109,17 @@ Key bindings:
  '(rainbow-delimiters-depth-9-face ((t (:foreground "magenta")))))
 (add-hook 'flymake-mode-hook 'my-flymake-minor-mode)
 
+; paredit
+(autoload 'enable-paredit-mode "paredit"
+  "Turn on pseudo-structural editing of Lisp code."
+  t)
+(add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
+(add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
+(add-hook 'ielm-mode-hook             #'enable-paredit-mode)
+(add-hook 'lisp-mode-hook             #'enable-paredit-mode)
+(add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
+(add-hook 'scheme-mode-hook           #'enable-paredit-mode)
+
 ; evil
 (add-to-list 'load-path "~/config_files/emacs/evil")
 (require 'evil)
@@ -125,17 +136,6 @@ Key bindings:
 (setq org-log-done t)
 (add-hook 'org-mode-hook
           (lambda () (setq truncate-lines nil)))
-
-; paredit
-(autoload 'enable-paredit-mode "paredit"
-  "Turn on pseudo-structural editing of Lisp code."
-  t)
-(add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
-(add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
-(add-hook 'ielm-mode-hook             #'enable-paredit-mode)
-(add-hook 'lisp-mode-hook             #'enable-paredit-mode)
-(add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
-(add-hook 'scheme-mode-hook           #'enable-paredit-mode)
 
 ; color
 (require 'rainbow-delimiters)

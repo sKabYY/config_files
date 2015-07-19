@@ -404,7 +404,7 @@ Paredit behaves badly if parentheses are unbalanced, so exercise
                 paredit-splice-sexp-killing-forward
                 ("(a (b c| d e) f)"
                  "(a b c| f)"))
-   ("M-r"       paredit-raise-sexp
+   (("M-r" "C-j")       paredit-raise-sexp
                 ("(dynamic-wind in (lambda () |body) out)"
                  "(dynamic-wind in |body out)"
                  "|body"))
@@ -413,13 +413,13 @@ Paredit behaves badly if parentheses are unbalanced, so exercise
                  "(frob |(let ((x 5) (y 3)) (zwonk) (wibblethwop)))"))
 
    "Barfage & Slurpage"
-   (("C-)" "C-<right>")
+   (("C-)" "C-<right>" "C-l")
                 paredit-forward-slurp-sexp
                 ("(foo (bar |baz) quux zot)"
                  "(foo (bar |baz quux) zot)")
                 ("(a b ((c| d)) e f)"
                  "(a b ((c| d) e) f)"))
-   (("C-}" "C-<left>")
+   (("C-}" "C-<left>" "C-h")
                 paredit-forward-barf-sexp
                 ("(foo (bar |baz quux) zot)"
                  "(foo (bar |baz) quux zot)"))
