@@ -4,10 +4,8 @@ config_files
 Install
 ---
 * install emacs24
-<!--
-* install erlang-mode
-* install pyflakes, pep8
--->
+* ~~install erlang-mode~~
+* ~~install pyflakes, pep8~~
 * install [racket-mode](https://github.com/greghendershott/racket-mode)
 * ./install.sh
 
