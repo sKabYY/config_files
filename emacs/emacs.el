@@ -8,11 +8,11 @@
 ;  "Prevent annoying \"Active processes exist\" query when you quit Emacs."
 ;  (flet ((process-list ())) ad-do-it))
 
-(setq mouse-wheel-scroll-amout '(1 ((shift) . 1)))
-(setq mouse-wheel-progressive-speed nil)
-(setq mouse-wheel-follow-mouse t)
+;(setq mouse-wheel-scroll-amout '(1 ((shift) . 1)))
+;(setq mouse-wheel-progressive-speed nil)
+;(setq mouse-wheel-follow-mouse t)
 (setq scroll-step 1)
-(xterm-mouse-mode t)
+;(xterm-mouse-mode t)
 (setq column-number-mode t)
 (setq-default case-fold-search nil)
 
