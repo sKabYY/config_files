@@ -119,6 +119,7 @@ Key bindings:
 (add-hook 'lisp-mode-hook             #'enable-paredit-mode)
 (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
 (add-hook 'scheme-mode-hook           #'enable-paredit-mode)
+(add-hook 'racket-mode-hook           #'enable-paredit-mode)
 
 ; evil
 (add-to-list 'load-path "~/config_files/emacs/evil")
@@ -178,8 +179,13 @@ Key bindings:
   (setq erlang-electric-commands '(erlang-electric-semicolon))))
 (add-to-list 'auto-mode-alist '("\\.erl" . erlang-mode))
 
-; scheme
-(add-to-list 'auto-mode-alist '("\\.rkt\\'" . scheme-mode))
+; racket mode
+;(add-to-list 'auto-mode-alist '("\\.rkt\\'" . scheme-mode))
+; MELPA
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/")
+             t)
 
 ; others
 (custom-set-variables
@@ -189,4 +195,3 @@ Key bindings:
  ;; If there is more than one, they won't work right.
  '(safe-local-variable-values (quote ((code . utf-8))))
  '(save-place t nil (saveplace)))
-
