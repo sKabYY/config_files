@@ -96,17 +96,20 @@ Key bindings:
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ ;; old-color: magenta
  '(flymake-errline ((((class color)) (:background "blue"))))
  '(flymake-warnline ((((class color)) (:background "blue"))))
- '(rainbow-delimiters-depth-1-face ((t (:foreground "magenta"))))
- '(rainbow-delimiters-depth-2-face ((t (:foreground "magenta"))))
- '(rainbow-delimiters-depth-3-face ((t (:foreground "magenta"))))
- '(rainbow-delimiters-depth-4-face ((t (:foreground "magenta"))))
- '(rainbow-delimiters-depth-5-face ((t (:foreground "magenta"))))
- '(rainbow-delimiters-depth-6-face ((t (:foreground "magenta"))))
- '(rainbow-delimiters-depth-7-face ((t (:foreground "magenta"))))
- '(rainbow-delimiters-depth-8-face ((t (:foreground "magenta"))))
- '(rainbow-delimiters-depth-9-face ((t (:foreground "magenta")))))
+ '(racket-paren-face ((t (:foreground "DimGrey"))))
+ ; '(rainbow-delimiters-depth-1-face ((t (:foreground "DimGrey"))))
+ ; '(rainbow-delimiters-depth-2-face ((t (:foreground "DimGrey"))))
+ ; '(rainbow-delimiters-depth-3-face ((t (:foreground "DimGrey"))))
+ ; '(rainbow-delimiters-depth-4-face ((t (:foreground "DimGrey"))))
+ ; '(rainbow-delimiters-depth-5-face ((t (:foreground "DimGrey"))))
+ ; '(rainbow-delimiters-depth-6-face ((t (:foreground "DimGrey"))))
+ ; '(rainbow-delimiters-depth-7-face ((t (:foreground "DimGrey"))))
+ ; '(rainbow-delimiters-depth-8-face ((t (:foreground "DimGrey"))))
+ ; '(rainbow-delimiters-depth-9-face ((t (:foreground "DimGrey"))))
+ )
 (add-hook 'flymake-mode-hook 'my-flymake-minor-mode)
 
 ; paredit
@@ -139,10 +142,10 @@ Key bindings:
           (lambda () (setq truncate-lines nil)))
 
 ; color
-(require 'rainbow-delimiters)
-(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'python-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'erlang-mode-hook 'rainbow-delimiters-mode)
+;(require 'rainbow-delimiters)
+;(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+;(add-hook 'python-mode-hook 'rainbow-delimiters-mode)
+;(add-hook 'erlang-mode-hook 'rainbow-delimiters-mode)
 (add-to-list 'load-path "~/config_files/emacs/color-theme")
 (require 'color-theme)
 (eval-after-load "color-theme"
@@ -181,6 +184,7 @@ Key bindings:
 
 ; racket mode
 ;(add-to-list 'auto-mode-alist '("\\.rkt\\'" . scheme-mode))
+;(setq tab-always-indent 'complete)
 ; MELPA
 (require 'package)
 (add-to-list 'package-archives
