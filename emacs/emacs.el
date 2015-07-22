@@ -12,6 +12,7 @@
 ;(setq mouse-wheel-progressive-speed nil)
 ;(setq mouse-wheel-follow-mouse t)
 (setq scroll-step 1)
+(setq scroll-conservatively 10000)
 ;(xterm-mouse-mode t)
 (setq column-number-mode t)
 (setq-default case-fold-search nil)
