@@ -31,7 +31,7 @@
 (setq-default show-trailing-whitespace t)
 
 ; tab
-(standard-display-ascii ?\t "------->")
+;(standard-display-ascii ?\t "--->")
 (setq-default indent-tabs-mode nil)
 
 ; return key, auto indent
