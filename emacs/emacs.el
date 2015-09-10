@@ -162,26 +162,26 @@ Key bindings:
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ; python
-(when (load "flymake" t)
-  (defun flymake-local-file ()
-    (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-inplace))
-           (local-file (file-relative-name
-                        temp-file
-                        (file-name-directory buffer-file-name))))
-      local-file))
-  (defun flymake-pychecker-init ()
-    (list "pychecker.sh" (list (flymake-local-file))))
-  (defun add-to-list-flymake (proc-symbol)
-    (add-to-list 'flymake-allowed-file-name-masks
-                 (list "\\.py\\'" proc-symbol)))
-  (add-to-list-flymake 'flymake-pychecker-init))
-(add-hook 'find-file-hook 'flymake-find-file-hook)
+;(when (load "flymake" t)
+;  (defun flymake-local-file ()
+;    (let* ((temp-file (flymake-init-create-temp-buffer-copy
+;                       'flymake-create-temp-inplace))
+;           (local-file (file-relative-name
+;                        temp-file
+;                        (file-name-directory buffer-file-name))))
+;      local-file))
+;  (defun flymake-pychecker-init ()
+;    (list "pychecker.sh" (list (flymake-local-file))))
+;  (defun add-to-list-flymake (proc-symbol)
+;    (add-to-list 'flymake-allowed-file-name-masks
+;                 (list "\\.py\\'" proc-symbol)))
+;  (add-to-list-flymake 'flymake-pychecker-init))
+;(add-hook 'find-file-hook 'flymake-find-file-hook)
 
 ; erlang
-(add-hook 'erlang-mode-hook (lambda ()
-  (setq erlang-electric-commands '(erlang-electric-semicolon))))
-(add-to-list 'auto-mode-alist '("\\.erl" . erlang-mode))
+;(add-hook 'erlang-mode-hook (lambda ()
+;  (setq erlang-electric-commands '(erlang-electric-semicolon))))
+;(add-to-list 'auto-mode-alist '("\\.erl" . erlang-mode))
 
 ; racket mode
 ;(add-to-list 'auto-mode-alist '("\\.rkt\\'" . scheme-mode))
