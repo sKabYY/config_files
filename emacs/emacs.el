@@ -1,4 +1,11 @@
 ; load-path
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (add-to-list 'load-path "~/config_files/emacs")
 
 (setq make-backup-files nil)
@@ -161,30 +168,44 @@ Key bindings:
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
+; lua
+(autoload 'lua-mode "lua-mode" "Lua editing mode." t)
+(add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
+(add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
+
+; verilog
+(setq verilog-auto-lineup nil)
+
 ; python
-;(when (load "flymake" t)
-;  (defun flymake-local-file ()
-;    (let* ((temp-file (flymake-init-create-temp-buffer-copy
-;                       'flymake-create-temp-inplace))
-;           (local-file (file-relative-name
-;                        temp-file
-;                        (file-name-directory buffer-file-name))))
-;      local-file))
-;  (defun flymake-pychecker-init ()
-;    (list "pychecker.sh" (list (flymake-local-file))))
-;  (defun add-to-list-flymake (proc-symbol)
-;    (add-to-list 'flymake-allowed-file-name-masks
-;                 (list "\\.py\\'" proc-symbol)))
-;  (add-to-list-flymake 'flymake-pychecker-init))
-;(add-hook 'find-file-hook 'flymake-find-file-hook)
+(when (load "flymake" t)
+  (defun flymake-local-file ()
+    (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                       'flymake-create-temp-inplace))
+           (local-file (file-relative-name
+                        temp-file
+                        (file-name-directory buffer-file-name))))
+      local-file))
+  (defun flymake-pychecker-init ()
+    (list "pychecker.sh" (list (flymake-local-file))))
+  (defun add-to-list-flymake (proc-symbol)
+    (add-to-list 'flymake-allowed-file-name-masks
+                 (list "\\.py\\'" proc-symbol)))
+  (add-to-list-flymake 'flymake-pychecker-init))
+(add-hook 'find-file-hook 'flymake-find-file-hook)
 
 ; erlang
 ;(add-hook 'erlang-mode-hook (lambda ()
 ;  (setq erlang-electric-commands '(erlang-electric-semicolon))))
 ;(add-to-list 'auto-mode-alist '("\\.erl" . erlang-mode))
+;(setq load-path (cons "/usr/local/Cellar/erlang/17.5/lib/erlang/lib/tools-2.7.2/emacs" load-path))
+;(setq erlang-root-dir "/usr/local/Cellar/erlang/17.5")
+;(setq exec-path (cons "/usr/local/Cellar/erlang/17.5/bin" exec-path))
+;(require 'erlang-start)
 
 ; racket mode
 ;(add-to-list 'auto-mode-alist '("\\.rkt\\'" . scheme-mode))
+(add-to-list 'auto-mode-alist '("\\.ss\\'" . racket-mode))
+(add-to-list 'auto-mode-alist '("\\.scm\\'" . racket-mode))
 ;(setq tab-always-indent 'complete)
 ; MELPA
 (require 'package)
